@@ -10,7 +10,8 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    matrizdispersa.cpp
+    matrizdispersa.cpp \
+    castear.cpp
 
 HEADERS += \
     matrizdispersa.h
