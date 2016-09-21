@@ -128,7 +128,50 @@ NodoColumna** agregar(NodoColumna **actual, int c)
  */
 NodoFila** agregar(NodoFila** actual, char* f)
 {
+    if ((*actual) == NULL || strcmp((*actual)->fila, f) > 0)
+    {
+        //LISTA FILA VACIA O INSERCION POR DELANTE
+        NodoFila* nuevo = new NodoFila(f);
+        if ((*actual) != NULL)
+        {
+            //INSERSION POR DELANTE
+            nuevo->abajo = (*actual);
+            if ((*actual)->arriba != NULL)
+            {
+                (*actual)->arriba->abajo = nuevo;
+                nuevo->arriba = (*actual)->arriba;
+            }
+            (*actual)->arriba = nuevo;
+        }
+        (*actual) = nuevo;
 
+        return &nuevo;
+    } else
+    {
+        //LISTA FILA CON AL MENOS UN ELEMENTO
+        if ((*actual)->abajo != NULL && strcmp((*actual)->fila, f) < 0)
+        {
+            //SE PUEDE AVANZAR EN LA LISTA
+            return agregar(&((*actual)->abajo), f);
+        } else if (strcmp((*actual)->fila, f) == 0)
+        {
+            //NODO FILA YA SE ENCUENTRA
+            return actual;
+        } else
+        {
+            NodoFila* nuevo = new NodoFila(f);
+            if ((*actual)->abajo != NULL);
+            {
+                //APUNTAR EL SIGUIENTE DE NODO FILA ACTUAL A NODO FILA NUEVO
+                nuevo->abajo = (*actual)->abajo;
+                (*actual)->arriba = nuevo;
+            }
+            (*actual)->abajo = nuevo;
+            nuevo->arriba = (*actual);
+
+            return &nuevo;
+        }
+    }
 }
 
 /*
@@ -150,8 +193,8 @@ void agregarNodoFila(NodoMatriz **actual, NodoMatriz **nuevo)
 void Matriz::insertar(char *pieza, int columna, char *fila, int nivel, char* color)
 {
     NodoColumna** columnaTemp = NULL;
-    //NodoFila** filaTemp = NULL;
+    NodoFila** filaTemp = NULL;
 
     columnaTemp = agregar(&(this->listaColumna), columna);
-    //filaTemp = agregar(&(this->listaFila), fila);
+    filaTemp = agregar(&(this->listaFila), fila);
 }

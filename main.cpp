@@ -11,10 +11,10 @@ int main()
 {
     Matriz* matriz = new Matriz();
     matriz->insertar("peon", 5, "H", 2, "Negro");
-    matriz->insertar("K", 4, "H", 1, "Negro");
-    matriz->insertar("Q", 5, "H", 1, "Negro");
-    matriz->insertar("A", 3, "H", 2, "Negro");
-    matriz->insertar("T", 8, "H", 2, "Negro");
+    matriz->insertar("K", 4, "D", 1, "Negro");
+    matriz->insertar("Q", 5, "F", 1, "Negro");
+    matriz->insertar("A", 3, "A", 2, "Negro");
+    matriz->insertar("T", 8, "B", 2, "Negro");
 
     /*
     int numero = 5;
